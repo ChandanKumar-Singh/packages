@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// Set nicely colored PlaceHolder while image is loading
 class PlaceHolderWidget extends StatelessWidget {

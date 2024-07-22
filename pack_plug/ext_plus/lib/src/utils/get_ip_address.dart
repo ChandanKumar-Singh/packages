@@ -1,5 +1,5 @@
 import 'package:http/http.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// Enum representing the format in which the IP address should be retrieved.
 enum IPAddressFormat {

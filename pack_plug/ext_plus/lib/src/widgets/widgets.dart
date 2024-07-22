@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// show confirm dialog box
 Future<bool?> showConfirmDialog<bool>(
@@ -151,7 +151,7 @@ Widget snapWidgetHelper<T>(
   bool showErrorLog = false,
 }) {
   if (snap.hasError) {
-    if (showErrorLog) log('ext_pro->snapWidgetHelper(): ${snap.error}');
+    if (showErrorLog) log('ext_plus->snapWidgetHelper(): ${snap.error}');
     if (errorBuilder != null) {
       return errorBuilder.call(defaultErrorMessage ?? snap.error.toString());
     }

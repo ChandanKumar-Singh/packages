@@ -6,7 +6,7 @@ class LineIcons {
   LineIcons._();
 
   static const _kFontFam = 'LineAwesomeIcons';
-  static const _kFontPackage = 'ext_pro';
+  static const _kFontPackage = 'ext_plus';
 
   static const IconData caret_square_right_1 =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPackage);

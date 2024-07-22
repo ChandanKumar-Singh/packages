@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// A customizable animated ListView widget with various animation configurations.
 class AnimatedListView extends StatefulWidget {

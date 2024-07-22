@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 enum DeviceSize { mobile, tablet, desktop }
 

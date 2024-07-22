@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DashBoardPage extends StatefulWidget {
   const DashBoardPage({super.key});
+  static const String routeName = '/';
 
   @override
   State<DashBoardPage> createState() => _DashBoardPageState();
@@ -10,7 +11,7 @@ class DashBoardPage extends StatefulWidget {
 class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text('Hello, World!'),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 // int Extensions
 extension IntExtensions on int? {

@@ -1,8 +1,9 @@
-name: ext_pro
+name: ext_plus
 description: "A Flutter package providing utility methods and extensions for String manipulations and validations with comprehensive null check handling.
 "
-version: 0.0.6
-homepage:
+version: 0.0.7
+repository: https://github.com/ChandanKumar-Singh/packages/blob/main/pack_plug/ext_plus/example/lib/main.dart
+homepage:  https://github.com/ChandanKumar-Singh/packages/blob/main/pack_plug/ext_plus/example/lib/main.dart
 
 environment:
   sdk: ">=3.3.0 <4.0.0"

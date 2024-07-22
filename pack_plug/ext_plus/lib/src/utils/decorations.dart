@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// returns default InputDecoration for AppTextField widget
 InputDecoration defaultInputDecoration(

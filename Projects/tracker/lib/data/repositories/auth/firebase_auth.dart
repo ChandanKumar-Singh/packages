@@ -1,45 +1,51 @@
-import 'package:tracker/data/models/user/user_model.dart';
-import 'package:tracker/data/repositories/auth/auth_impl.dart';
+// import 'package:tracker/data/models/user/user_model.dart';
+// import 'package:tracker/data/repositories/auth/auth_impl.dart';
 
-class FirebaseAuthImpl extends AuthRepository {
-  @override
-  Future<AppUser?> getCurrentUser() {
-    throw UnimplementedError();
-  }
+// import 'user_repository.dart';
 
-  @override
-  Future<bool> isSignedIn() {
-    // TODO: implement isSignedIn
-    throw UnimplementedError();
-  }
 
-  @override
-  Future<void> sendPasswordResetEmail(String email) {
-    // TODO: implement sendPasswordResetEmail
-    throw UnimplementedError();
-  }
 
-  @override
-  Future<AppUser?> signInWithEmailAndPassword(String email, String password) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
-  }
 
-  @override
-  Future<AppUser?> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
-  }
+// class FirebaseAuthImpl extends UserRepositoryImpl {
+//   @override
+//   String getAuthToken() {
+//     // TODO: implement getAuthToken
+//     throw UnimplementedError();
+//   }
 
-  @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
-  }
+//   @override
+//   Future<AppUser?> getCurrentUser() {
+//     // TODO: implement getCurrentUser
+//     throw UnimplementedError();
+//   }
 
-  @override
-  Future<AppUser?> signUpWithEmailAndPassword(String email, String password) {
-    // TODO: implement signUpWithEmailAndPassword
-    throw UnimplementedError();
-  }
-}
+//   @override
+//   bool isUserLoggedIn() {
+//     // TODO: implement isUserLoggedIn
+//     throw UnimplementedError();
+//   }
+
+//   @override
+//   Future<void> removeAuthToken() {
+//     // TODO: implement removeAuthToken
+//     throw UnimplementedError();
+//   }
+
+//   @override
+//   Future<void> removeCurrentUser() {
+//     // TODO: implement removeCurrentUser
+//     throw UnimplementedError();
+//   }
+
+//   @override
+//   Future<void> setAuthToken(String token) {
+//     // TODO: implement setAuthToken
+//     throw UnimplementedError();
+//   }
+
+//   @override
+//   Future<void> setCurrentUser(AppUser user, {bool remote = false}) {
+//     // TODO: implement setCurrentUser
+//     throw UnimplementedError();
+//   }
+// }

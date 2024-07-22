@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// Google logo created using CustomPaint
 class GoogleLogoWidget extends StatelessWidget {

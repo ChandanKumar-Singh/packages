@@ -1,4 +1,4 @@
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 // num Extensions
 extension NumExt on num? {

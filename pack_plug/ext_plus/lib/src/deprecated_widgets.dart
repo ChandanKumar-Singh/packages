@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 extension TextExtension on Text {
   @Deprecated(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// A widget used to display a message when there is no data available.
 class NoDataWidget extends StatelessWidget {

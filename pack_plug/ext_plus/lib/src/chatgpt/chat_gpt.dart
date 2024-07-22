@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../ext_pro.dart';
+import '../../ext_plus.dart';
 
 /// Generates a response using the ChatGPT API based on the provided prompt.
 ///

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// set different layout based on current screen size (mobile, web, desktop)
 class Responsive extends StatelessWidget {

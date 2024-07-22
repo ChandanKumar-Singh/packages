@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 // SnapHelperWidget makes easy implementation for future or stream builder
 class SnapHelperWidget<T> extends StatelessWidget {

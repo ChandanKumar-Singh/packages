@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// Returns SharedPref Instance
 Future<SharedPreferences> getSharedPref() async {

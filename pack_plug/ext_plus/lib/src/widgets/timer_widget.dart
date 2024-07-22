@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ext_pro/ext_pro.dart';
+import 'package:ext_plus/ext_plus.dart';
 
 /// TimerWidget - Use this widget if you want to do something every X seconds or any duration.
 class TimerWidget extends StatefulWidget {
