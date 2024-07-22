@@ -1,3 +1,8 @@
+## 0.0.8+4
+
+* logger improved
+* try catch added
+
 ## 0.0.8
 
 * TODO: dialog added
