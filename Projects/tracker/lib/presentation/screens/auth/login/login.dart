@@ -10,7 +10,8 @@ import '../../../../data/repositories/index.dart';
 import '../../../widgets/index.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, this.redirect});
+  final String? redirect;
   static const String routeName = '/login';
 
   @override

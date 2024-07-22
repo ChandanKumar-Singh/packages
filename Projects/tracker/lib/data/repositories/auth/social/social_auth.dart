@@ -10,6 +10,8 @@ abstract class SocialAuth {
   Future<AuthResult> forgotPassword();
 
   Future<AuthResult> changePassword();
+
+  String get name;
 }
 
 mixin SocialAuthLoggging on SocialAuth {
@@ -69,6 +71,7 @@ class SocialUser {
   final String? name;
   final String? photoUrl;
   final String? phoneNumber;
+  final String? authProviderName;
 
   SocialUser({
     required this.primaryId,
@@ -77,6 +80,7 @@ class SocialUser {
     this.name,
     this.photoUrl,
     this.phoneNumber,
+    this.authProviderName,
   });
 
   SocialUser copyWith({
@@ -86,6 +90,7 @@ class SocialUser {
     String? name,
     String? photoUrl,
     String? phoneNumber,
+    String? authProviderName,
   }) {
     return SocialUser(
       primaryId: primaryId ?? this.primaryId,
@@ -94,6 +99,7 @@ class SocialUser {
       name: name ?? this.name,
       photoUrl: photoUrl ?? this.photoUrl,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      authProviderName: authProviderName ?? this.authProviderName,
     );
   }
 
@@ -103,7 +109,8 @@ class SocialUser {
         email = json['email'],
         name = json['name'],
         photoUrl = json['photoUrl'],
-        phoneNumber = json['phoneNumber'];
+        phoneNumber = json['phoneNumber'],
+        authProviderName = json['authProviderName'];
 
   Map<String, dynamic> toJson() {
     return {
@@ -113,6 +120,7 @@ class SocialUser {
       'name': name,
       'photoUrl': photoUrl,
       'phoneNumber': phoneNumber,
+      'authProviderName': authProviderName
     };
   }
 }
@@ -153,6 +161,7 @@ class GoogleAuth extends SocialAuth {
           name: user.displayName,
           photoUrl: user.photoURL,
           phoneNumber: user.phoneNumber,
+          authProviderName: name
         ),
         'Google Sign In successful',
       );
@@ -182,6 +191,9 @@ class GoogleAuth extends SocialAuth {
       message: 'Loggged out successfully',
     );
   }
+
+  @override
+  String get name => 'google';
 }
 
 class EmailAuth extends SocialAuth {
@@ -233,4 +245,7 @@ class EmailAuth extends SocialAuth {
       message: 'Loggged out successfully',
     );
   }
+
+  @override
+  String get name => 'email';
 }

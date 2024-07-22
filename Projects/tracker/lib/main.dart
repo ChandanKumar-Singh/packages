@@ -7,7 +7,8 @@ import 'package:tracker/firebase_options.dart';
 
 import 'business_logics/blocs/index.dart';
 import 'core/index.dart';
-import 'presentation/screens/index.dart';
+import 'presentation/routes/index.dart';
+import 'package:go_router/go_router.dart' ;
 part 'app.dart';
 
 void main() async {

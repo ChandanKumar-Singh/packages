@@ -88,7 +88,7 @@ class SettingItemWidget extends StatelessWidget {
       ),
     ).onTap(
       onTap,
-      borderRadius: radius ?? (BorderRadius.circular(borderRadius.validate())),
+      radius: radius?.topLeft.x ?? borderRadius.validate(),
       hoverColor: hoverColor,
       splashColor: splashColor,
       highlightColor: highlightColor,

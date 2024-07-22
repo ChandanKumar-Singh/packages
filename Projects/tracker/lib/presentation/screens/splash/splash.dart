@@ -1,5 +1,6 @@
 import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:tracker/presentation/routes/index.dart';
 
 import '../../../constants/index.dart';
 
@@ -15,7 +16,8 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    // delay(2).then((value) => goTo(context, Welcome.routeName, replace: false));
+    2000.delay.then((value) =>
+        routeTo(Routes.home, clearStack: true, queryParameters: {'age': '10'}));
   }
 
   @override

@@ -4,43 +4,46 @@ import 'package:ext_plus/ext_plus.dart';
 
 // Widget Extensions
 extension WidgetExtension on Widget? {
-  /// With custom height and width
+  /// Returns a [SizedBox] with specified width and height
   SizedBox withSize({double width = 0.0, double height = 0.0}) {
     return SizedBox(height: height, width: width, child: this);
   }
 
-  /// With custom width
+  /// Returns a [SizedBox] with specified width
   SizedBox withWidth(double width) => SizedBox(width: width, child: this);
 
-  /// With custom height
+  /// Returns a [SizedBox] with specified height
   SizedBox withHeight(double height) => SizedBox(height: height, child: this);
 
-  /// return padding top
+  /// Adds padding to the top
   Padding paddingTop(double top) {
-    return Padding(padding: EdgeInsets.only(top: top), child: this);
+    return Padding(padding: EdgeInsetsDirectional.only(top: top), child: this);
   }
 
-  /// return padding left
+  /// Adds padding to the left
   Padding paddingLeft(double left) {
-    return Padding(padding: EdgeInsets.only(left: left), child: this);
+    return Padding(
+        padding: EdgeInsetsDirectional.only(start: left), child: this);
   }
 
-  /// return padding right
+  /// Adds padding to the right
   Padding paddingRight(double right) {
-    return Padding(padding: EdgeInsets.only(right: right), child: this);
+    return Padding(
+        padding: EdgeInsetsDirectional.only(end: right), child: this);
   }
 
-  /// return padding bottom
+  /// Adds padding to the bottom
   Padding paddingBottom(double bottom) {
-    return Padding(padding: EdgeInsets.only(bottom: bottom), child: this);
+    return Padding(
+        padding: EdgeInsetsDirectional.only(bottom: bottom), child: this);
   }
 
-  /// return padding all
+  /// Adds padding to all sides
   Padding paddingAll(double padding) {
-    return Padding(padding: EdgeInsets.all(padding), child: this);
+    return Padding(padding: EdgeInsetsDirectional.all(padding), child: this);
   }
 
-  /// return custom padding from each side
+  /// Adds padding to specified sides
   Padding paddingOnly({
     double top = 0.0,
     double left = 0.0,
@@ -48,25 +51,26 @@ extension WidgetExtension on Widget? {
     double right = 0.0,
   }) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(left, top, right, bottom),
+      padding: EdgeInsetsDirectional.fromSTEB(left, top, right, bottom),
       child: this,
     );
   }
 
-  /// return padding symmetric
+  /// Adds symmetric padding
   Padding paddingSymmetric({double vertical = 0.0, double horizontal = 0.0}) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
+      padding: EdgeInsetsDirectional.symmetric(
+          vertical: vertical, horizontal: horizontal),
       child: this,
     );
   }
 
-  /// set visibility
+  /// Sets widget visibility
   Widget visible(bool visible, {Widget? defaultWidget}) {
     return visible ? this! : (defaultWidget ?? SizedBox());
   }
 
-  /// add custom corner radius each side
+  /// Adds custom corner radius to each side
   ClipRRect cornerRadiusWithClipRRectOnly({
     int bottomLeft = 0,
     int bottomRight = 0,
@@ -80,22 +84,21 @@ extension WidgetExtension on Widget? {
         topLeft: Radius.circular(topLeft.toDouble()),
         topRight: Radius.circular(topRight.toDouble()),
       ),
-      child: this,
       clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: this,
     );
   }
 
-  /// add corner radius
+  /// Adds a uniform corner radius
   ClipRRect cornerRadiusWithClipRRect(double radius) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(radius)),
-      child: this,
       clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: this,
     );
   }
 
-  /// set widget visibility
-  @Deprecated('')
+  /// Sets widget visibility with additional options
   Visibility withVisibility(
     bool visible, {
     Widget? replacement,
@@ -112,12 +115,12 @@ extension WidgetExtension on Widget? {
       maintainSemantics: maintainSemantics,
       maintainSize: maintainSize,
       maintainState: maintainState,
-      child: this!,
       replacement: replacement ?? SizedBox(),
+      child: this!,
     );
   }
 
-  /// add opacity to parent widget
+  /// Adds opacity to the widget
   Widget opacity({
     required double opacity,
     int durationInSecond = 1,
@@ -130,7 +133,7 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add rotation to parent widget
+  /// Rotates the widget
   Widget rotate({
     required double angle,
     bool transformHitTests = true,
@@ -144,7 +147,7 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// add scaling to parent widget
+  /// Scales the widget
   Widget scale({
     required double scale,
     Offset? origin,
@@ -153,14 +156,14 @@ extension WidgetExtension on Widget? {
   }) {
     return Transform.scale(
       scale: scale,
-      child: this,
       origin: origin,
       alignment: alignment,
       transformHitTests: transformHitTests,
+      child: this,
     );
   }
 
-  /// add translate to parent widget
+  /// Translates the widget
   Widget translate({
     required Offset offset,
     bool transformHitTests = true,
@@ -169,12 +172,12 @@ extension WidgetExtension on Widget? {
     return Transform.translate(
       offset: offset,
       transformHitTests: transformHitTests,
-      child: this,
       key: key,
+      child: this,
     );
   }
 
-  /// set parent widget in center
+  /// Centers the widget
   Widget center({double? heightFactor, double? widthFactor}) {
     return Center(
       heightFactor: heightFactor,
@@ -183,9 +186,9 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  @Deprecated('Do not use this.')
+  /// Adds rounded corners
   Container withRoundedCorners({
-    Color backgroundColor = whiteColor,
+    Color backgroundColor = Colors.white,
     BorderRadius borderRadius = const BorderRadius.all(Radius.circular(8.0)),
     LinearGradient? gradient,
     BoxBorder? border,
@@ -194,25 +197,25 @@ extension WidgetExtension on Widget? {
     BoxShape boxShape = BoxShape.rectangle,
   }) {
     return Container(
-      decoration: boxDecorationWithRoundedCorners(
-        backgroundColor: backgroundColor,
+      decoration: BoxDecoration(
+        color: backgroundColor,
         borderRadius: borderRadius,
         gradient: gradient,
         border: border,
         boxShadow: boxShadow,
-        decorationImage: decorationImage,
-        boxShape: boxShape,
+        image: decorationImage,
+        shape: boxShape,
       ),
       child: this,
     );
   }
 
-  @Deprecated('Do not use this.')
+  /// Adds a shadow to the widget
   Container withShadow({
-    Color bgColor = whiteColor,
+    Color bgColor = Colors.white,
     Color shadowColor = Colors.black12,
-    blurRadius = 10.0,
-    spreadRadius = 0.0,
+    double blurRadius = 10.0,
+    double spreadRadius = 0.0,
     Offset offset = const Offset(0.0, 0.0),
     LinearGradient? gradient,
     BoxBorder? border,
@@ -220,7 +223,10 @@ extension WidgetExtension on Widget? {
     BoxShape boxShape = BoxShape.rectangle,
   }) {
     return Container(
-      decoration: boxDecorationWithShadow(
+      decoration: BoxDecoration(
+        color: bgColor,
+        border: border,
+        gradient: gradient,
         boxShadow: [
           BoxShadow(
             color: shadowColor,
@@ -229,36 +235,32 @@ extension WidgetExtension on Widget? {
             offset: offset,
           ),
         ],
-        backgroundColor: bgColor,
-        gradient: gradient,
-        border: border,
-        decorationImage: decorationImage,
-        boxShape: boxShape,
+        image: decorationImage,
+        shape: boxShape,
       ),
       child: this,
     );
   }
 
-  /// add tap to parent widget
+  /// Adds a tap handler to the widget
   Widget onTap(
     Function? function, {
-    BorderRadius? borderRadius,
+    double? radius,
     Color? splashColor,
     Color? hoverColor,
     Color? highlightColor,
   }) {
     return InkWell(
       onTap: function as void Function()?,
-      borderRadius: borderRadius ??
-          (defaultInkWellRadius != null ? radius(defaultInkWellRadius) : null),
+      borderRadius: BorderRadius.circular(radius ?? 0.0),
+      splashColor: splashColor,
+      hoverColor: hoverColor,
+      highlightColor: highlightColor,
       child: this,
-      splashColor: splashColor ?? defaultInkWellSplashColor,
-      hoverColor: hoverColor ?? defaultInkWellHoverColor,
-      highlightColor: highlightColor ?? defaultInkWellHighlightColor,
     );
   }
 
-  /// Launch a new screen
+  /// Launches a new screen
   Future<T?> launch<T>(BuildContext context,
       {bool isNewTask = false,
       PageRouteAnimation? pageRouteAnimation,
@@ -277,7 +279,7 @@ extension WidgetExtension on Widget? {
     }
   }
 
-  /// Wrap with ShaderMask widget
+  /// Wraps the widget with a [ShaderMask]
   Widget withShaderMask(
     List<Color> colors, {
     BlendMode blendMode = BlendMode.srcATop,
@@ -288,7 +290,7 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  /// Wrap with ShaderMask widget Gradient
+  /// Wraps the widget with a [ShaderMask] with gradient
   Widget withShaderMaskGradient(
     Gradient gradient, {
     BlendMode blendMode = BlendMode.srcATop,
@@ -300,7 +302,7 @@ extension WidgetExtension on Widget? {
     );
   }
 
-  @Deprecated('Do not use this')
+  /// Wraps the widget with a [SingleChildScrollView]
   Widget withScroll({
     ScrollPhysics? physics,
     EdgeInsetsGeometry? padding,
@@ -311,7 +313,6 @@ extension WidgetExtension on Widget? {
     required bool reverse,
   }) {
     return SingleChildScrollView(
-      child: this,
       physics: physics,
       padding: padding,
       scrollDirection: scrollDirection,
@@ -319,41 +320,186 @@ extension WidgetExtension on Widget? {
       dragStartBehavior: dragStartBehavior,
       primary: primary,
       reverse: reverse,
-    );
-  }
-
-  /// add Expanded to parent widget
-  Widget expand({flex = 1}) => Expanded(child: this!, flex: flex);
-
-  /// add Flexible to parent widget
-  Widget flexible({flex = 1, FlexFit? fit}) {
-    return Flexible(child: this!, flex: flex, fit: fit ?? FlexFit.loose);
-  }
-
-  /// add FittedBox to parent widget
-  Widget fit({BoxFit? fit, AlignmentGeometry? alignment}) {
-    return FittedBox(
       child: this,
-      fit: fit ?? BoxFit.contain,
-      alignment: alignment ?? Alignment.center,
     );
   }
 
-  /// Validate given widget is not null and returns given value if null.
+  /// Adds an [Expanded] widget to the parent
+  Widget expand({int flex = 1}) => Expanded(flex: flex, child: this!);
+
+  /// Adds a [Flexible] widget to the parent
+  Widget flexible({int flex = 1, FlexFit? fit}) {
+    return Flexible(flex: flex, fit: fit ?? FlexFit.loose, child: this!);
+  }
+
+  /// Adds a [FittedBox] to the parent
+  Widget fitted({
+    BoxFit fit = BoxFit.contain,
+    double? width,
+    double? height,
+    Alignment alignment = Alignment.center,
+  }) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: FittedBox(
+        fit: fit,
+        alignment: alignment,
+        clipBehavior: Clip.hardEdge,
+        child: this,
+      ),
+    );
+  }
+
+  /// Validates the widget and returns a given value if null
   Widget validate({Widget value = const SizedBox()}) => this ?? value;
 
-  @Deprecated('Use withTooltip() instead')
-  Widget tooltip({required String msg}) {
-    return Tooltip(message: msg, child: this);
-  }
-
-  /// Validate given widget is not null and returns given value if null.
+  /// Wraps the widget with a [Tooltip]
   Widget withTooltip({required String msg}) {
     return Tooltip(message: msg, child: this);
   }
 
-  /// Make your any widget refreshable with RefreshIndicator on top
+  /// Makes the widget refreshable with [RefreshIndicator]
   Widget get makeRefreshable {
     return Stack(children: [ListView(), this!]);
+  }
+
+  /// Adds padding to the widget
+  Widget padding({
+    double? top,
+    double? bottom,
+    double? left,
+    double? right,
+    double? all,
+  }) {
+    return Padding(
+      padding: EdgeInsetsDirectional.only(
+        top: top ?? 0,
+        bottom: bottom ?? 0,
+        start: left ?? 0,
+        end: right ?? 0,
+      ),
+      child: this,
+    );
+  }
+
+  /// Adds margin to the widget
+  Widget margin({
+    double? top,
+    double? bottom,
+    double? left,
+    double? right,
+    double? all,
+  }) {
+    return Container(
+      margin: EdgeInsetsDirectional.only(
+        top: top ?? 0,
+        bottom: bottom ?? 0,
+        start: left ?? 0,
+        end: right ?? 0,
+      ),
+      child: this,
+    );
+  }
+
+  /// Wraps the widget in a [Row]
+  Widget row({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
+    List<Widget> children = const [],
+  }) =>
+      Row(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: [this!, ...children],
+      );
+
+  /// Sets size of the widget
+  Widget size({double? width, double? height}) =>
+      SizedBox(width: width, height: height, child: this);
+
+  /// Centers the widget to the left
+  Widget centerLeft() => Row(children: [const Spacer(), this!]);
+
+  /// Centers the widget to the right
+  Widget centerRight() => Row(children: [this!, const Spacer()]);
+
+  /// Centers the widget at the top
+  Widget centerTop() => Column(children: [const Spacer(), this!]);
+
+  /// Centers the widget at the bottom
+  Widget centerBottom() => Column(children: [this!, const Spacer()]);
+
+  /// Aligns the widget
+  Widget align(Alignment alignment) => Align(alignment: alignment, child: this);
+
+  /// Adds background color to the widget
+  Widget background(Color color) => Container(color: color, child: this);
+
+  /// Adds border radius to the widget
+  Widget borderRadius(double radius) =>
+      ClipRRect(borderRadius: BorderRadius.circular(radius), child: this);
+
+  /// Adds elevation to the widget
+  Widget elevation(double elevation) =>
+      Material(elevation: elevation, child: this);
+
+  /// Adds shadow to the widget
+  Widget shadow(
+      {Color color = Colors.black,
+      double blurRadius = 10,
+      double spreadRadius = 0,
+      Offset offset = Offset.zero}) {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: color,
+            blurRadius: blurRadius,
+            spreadRadius: spreadRadius,
+            offset: offset,
+          ),
+        ],
+      ),
+      child: this,
+    );
+  }
+
+  /// Adds a long press handler to the widget
+  Widget onLongPress(VoidCallback onLongPress) =>
+      GestureDetector(onLongPress: onLongPress, child: this);
+
+  /// Adds a double tap handler to the widget
+  Widget onDoubleTap(VoidCallback onDoubleTap) =>
+      GestureDetector(onDoubleTap: onDoubleTap, child: this);
+
+  /// Adds horizontal drag handler to the widget
+  Widget onHorizontalDrag(DragStartBehavior dragStartBehavior,
+      GestureDragUpdateCallback onHorizontalDragUpdate) {
+    return GestureDetector(
+      dragStartBehavior: dragStartBehavior,
+      onHorizontalDragUpdate: onHorizontalDragUpdate,
+      child: this,
+    );
+  }
+
+  /// Adds vertical drag handler to the widget
+  Widget onVerticalDrag(DragStartBehavior dragStartBehavior,
+      GestureDragUpdateCallback onVerticalDragUpdate) {
+    return GestureDetector(
+      dragStartBehavior: dragStartBehavior,
+      onVerticalDragUpdate: onVerticalDragUpdate,
+      child: this,
+    );
+  }
+
+  /// Adds pan handler to the widget
+  Widget onPan(DragStartBehavior dragStartBehavior,
+      GestureDragUpdateCallback onPanUpdate) {
+    return GestureDetector(
+      dragStartBehavior: dragStartBehavior,
+      onPanUpdate: onPanUpdate,
+      child: this,
+    );
   }
 }

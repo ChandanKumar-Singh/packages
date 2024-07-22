@@ -13,6 +13,7 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) => AppUser(
       token: json['token'] as String?,
       photoUrl: json['photoUrl'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
+      authProviderName: json['authProviderName'] as String?,
     );
 
 Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'email': instance.email,
       'photoUrl': instance.photoUrl,
       'phoneNumber': instance.phoneNumber,
+      'authProviderName': instance.authProviderName,
     };

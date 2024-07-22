@@ -65,6 +65,28 @@ extension IntExtensions on int? {
   /// ```
   Duration get days => Duration(days: validate());
 
+  /// Returns weeks duration
+  /// ```dart
+  /// 5.weeks
+  /// ```
+  Duration get weeks => Duration(days: validate() * 7);
+
+  /// Returns months duration
+  /// ```dart
+  /// 5.months
+  /// ```
+  Duration get months => Duration(days: validate() * 30);
+
+  /// Returns years duration
+  /// ```dart
+  /// 5.years
+  /// ```
+  Duration get years => Duration(days: validate() * 365);
+
+  /// Returns Future.delayed
+
+  Future<void> get delay => Future.delayed(Duration(milliseconds: validate()));
+
   /// Returns if a number is between `first` and `second`
   /// ```dart
   /// 100.isBetween(50, 150) // true;

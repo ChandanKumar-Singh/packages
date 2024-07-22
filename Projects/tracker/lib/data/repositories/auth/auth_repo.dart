@@ -34,7 +34,9 @@ class AuthRepo {
         ..id = result.user?.uid
         ..token = result.user?.uid
         ..photoUrl = result.user?.photoUrl
-        ..phoneNumber = result.user?.phoneNumber;
+        ..phoneNumber = result.user?.phoneNumber
+        ..authProviderName = result.user?.authProviderName;
+
       isSuccess = result.success;
       message = result.message;
       if (isSuccess) {
@@ -50,5 +52,27 @@ class AuthRepo {
       errorToast(message ?? 'Login failed');
     } finally {}
     return isSuccess;
+  }
+
+  Future<bool> logOut() async {
+    return await UserRepository.instance.getCurrentUser().then((user) async {
+      if (user == null) {
+        warningToast('You are not logged in');
+        return false;
+      }
+      switch (user.authProviderName) {
+        case 'google':
+          await GoogleAuth().loggout();
+          break;
+        case 'email':
+          await EmailAuth(user.email!, user.token!).loggout();
+          break;
+        default:
+          break;
+      }
+      await UserRepository.instance.removeCurrentUser();
+      successToast('Logged out successfully');
+      return true;
+    });
   }
 }

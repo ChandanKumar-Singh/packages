@@ -31,12 +31,19 @@ class SpHelper {
   Map<String, dynamic>? getUser() {
     var data = getStringAsync(StorageConstants.user, defaultValue: '{}');
     logg('getUser: $data', name: runtimeType);
-    return jsonEncode(data) as Map<String, dynamic>?;
+    return jsonDecode(data) as Map<String, dynamic>?;
   }
+
+  /// navigation
+  void setRedirection(String path) =>
+      setValue(StorageConstants.redirectTo, path);
+  String getRedirection() => getStringAsync(StorageConstants.redirectTo);
 }
 
 class StorageConstants {
   static const String user = 'user';
   static const String isLogin = 'isLogin';
   static const String authToken = 'authToken';
+
+  static const String redirectTo = 'redirectTO';
 }

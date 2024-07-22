@@ -9,6 +9,7 @@ class AppUser {
   String? email;
   String? photoUrl;
   String? phoneNumber;
+  String? authProviderName;
 
   AppUser(
       {this.id,
@@ -16,7 +17,8 @@ class AppUser {
       this.email,
       this.token,
       this.photoUrl,
-      this.phoneNumber});
+      this.phoneNumber,
+      this.authProviderName});
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>
       _$AppUserFromJson(json);

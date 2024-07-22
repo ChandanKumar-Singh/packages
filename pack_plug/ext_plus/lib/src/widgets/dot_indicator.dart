@@ -105,7 +105,7 @@ class DotIndicatorState extends State<DotIndicator> {
             setState(() {});
 
             if (widget.onDotTap != null) widget.onDotTap!(idx);
-          }, borderRadius: radius(16));
+          }, radius: 16);
         }).toList(),
       ),
     );

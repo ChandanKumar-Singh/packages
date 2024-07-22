@@ -98,6 +98,12 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "flutter_smart_dialog",
+      "rootUri": "file:///C:/Users/chand/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_smart_dialog-4.9.7+9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/Users/chand/fvm/versions/3.22.0/packages/flutter_test",
       "packageUri": "lib/",
@@ -156,6 +162,12 @@
       "rootUri": "file:///C:/Users/chand/AppData/Local/Pub/Cache/hosted/pub.dev/lints-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "logger",
+      "rootUri": "file:///C:/Users/chand/AppData/Local/Pub/Cache/hosted/pub.dev/logger-2.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "matcher",
@@ -350,7 +362,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-07-20T15:06:58.111532Z",
+  "generated": "2024-07-21T17:51:46.173360Z",
   "generator": "pub",
   "generatorVersion": "3.4.0",
   "flutterRoot": "file:///C:/Users/chand/fvm/versions/3.22.0",

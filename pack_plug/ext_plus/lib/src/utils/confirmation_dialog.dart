@@ -405,7 +405,7 @@ Future<bool?> showConfirmDialogCustom(
                                     textPrimaryColorGlobal),
                           ),
                         ],
-                      ).fit(),
+                      ).fitted(),
                       onTap: () {
                         if (cancelable) finish(_, false);
 
@@ -430,7 +430,7 @@ Future<bool?> showConfirmDialogCustom(
                                 color: positiveTextColor ?? Colors.white),
                           ),
                         ],
-                      ).fit(),
+                      ).fitted(),
                       onTap: () {
                         onAccept.call(_);
 

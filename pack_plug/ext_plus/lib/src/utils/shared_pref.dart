@@ -4,7 +4,8 @@ import 'package:ext_plus/ext_plus.dart';
 
 /// Returns SharedPref Instance
 Future<SharedPreferences> getSharedPref() async {
-  return await SharedPreferences.getInstance();
+  sharedPreferences = await SharedPreferences.getInstance();
+  return sharedPreferences;
 }
 
 /// Add a value in SharedPref based on their type - Must be a String, int, bool, double, Map<String, dynamic> or StringList

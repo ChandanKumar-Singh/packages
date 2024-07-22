@@ -1,6 +1,7 @@
 import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tracker/presentation/routes/index.dart';
 
 import '../../../data/repositories/auth/auth_repo.dart';
 import '../../../data/repositories/auth/social/social_auth.dart';
@@ -30,6 +31,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
     if (res) {
       emit(const LoginSuccess());
+      routeTo(Routes.home, replace: true);
+      2000.delay.then((_) => redirectTo());
     } else {
       emit(const LoginFailure(error: 'Login failed'));
     }
