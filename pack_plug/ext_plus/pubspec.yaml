@@ -1,7 +1,7 @@
 name: ext_plus
 description: "A Flutter package providing utility methods and extensions for String manipulations and validations with comprehensive null check handling.
 "
-version: 0.0.8+4
+version: 0.0.8+5
 repository: https://github.com/ChandanKumar-Singh/packages/blob/main/pack_plug/ext_plus/example/lib/main.dart
 homepage:  https://github.com/ChandanKumar-Singh/packages/blob/main/pack_plug/ext_plus/example/lib/main.dart
 
@@ -13,6 +13,7 @@ dependencies:
   connectivity_plus: ^6.0.3
   flutter:
     sdk: flutter
+  flutter_custom_tabs: ^2.1.0
   flutter_smart_dialog: ^4.9.7+9
   fluttertoast: ^8.2.6
   http: ^1.2.1

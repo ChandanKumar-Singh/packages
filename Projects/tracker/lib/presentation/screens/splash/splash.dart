@@ -1,6 +1,6 @@
 import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:tracker/presentation/routes/index.dart';
+import '/presentation/routes/index.dart';
 
 import '../../../constants/index.dart';
 

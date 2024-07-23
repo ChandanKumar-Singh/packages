@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tracker/data/repositories/auth/index.dart';
-import 'package:tracker/presentation/routes/index.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '/business_logics/blocs/auth/auth_bloc.dart';
+import '/data/repositories/auth/index.dart';
 
 class DashBoardPage extends StatefulWidget {
   const DashBoardPage({super.key});
@@ -12,6 +13,12 @@ class DashBoardPage extends StatefulWidget {
 
 class _DashBoardPageState extends State<DashBoardPage> {
   @override
+  void initState() {
+    UserRepository.instance.refreshCurrentUser();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -20,9 +27,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              AuthRepo.instance.logOut().then((value) {
-                if (value) routeTo(Routes.login);
-              });
+              context.read<AuthBloc>().add(AuthLogoutSubmitted(GoogleAuth()));
             },
           ),
         ],

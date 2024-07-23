@@ -1,78 +1,63 @@
 import 'package:ext_plus/ext_plus.dart';
-import 'package:tracker/data/models/index.dart';
+import '/data/models/index.dart';
+import '../../../business_logics/blocs/index.dart';
 import 'index.dart';
 
 class AuthRepo {
   AuthRepo._();
   static final AuthRepo instance = AuthRepo._();
 
-  Future<AuthResult> loginWithSocialAuth(SocialAuth socialAuth) async {
-    await socialAuth.loggout();
-    AuthResult result = await socialAuth.login();
-    logg(result.toString(), name: runtimeType);
-    return result;
-  }
-
-  Future<AuthResult> loginWithCredentials(String email, String password) async {
-    AuthResult result = await EmailAuth(email, password).login();
-    logg(result.toString(), name: runtimeType);
-    return result;
-  }
-
-  Future<bool> login(dynamic type, {String? email, String? password}) async {
+  Future<AuthResult> login(AuthProviderInterface provider,
+      {String? email, String? password}) async {
     bool isSuccess = false;
-    AppUser? user;
+    AuthUser? user;
     String? message;
     try {
-      logg('$type Login started', name: runtimeType);
-      final result = type is SocialAuth
-          ? await loginWithSocialAuth(type)
-          : await loginWithCredentials(email!, password!);
-      user = AppUser()
-        ..email = result.user?.email
-        ..name = result.user?.name
-        ..id = result.user?.uid
-        ..token = result.user?.uid
-        ..photoUrl = result.user?.photoUrl
-        ..phoneNumber = result.user?.phoneNumber
-        ..authProviderName = result.user?.authProviderName;
-
-      isSuccess = result.success;
+      AuthResult result = await provider.login();
+      logg('$provider Login started', name: runtimeType);
+      // final result = provider is SocialAuthProvider
+      //     ? await loginWithSocialAuth(provider)
+      //     : await loginWithCredentials(email!, password!);
+      // user = AuthUser()
+      //   ..email = result.user?.email
+      //   ..name = result.user?.name
+      //   ..uid = result.user?.uid
+      //   ..primaryId = result.user?.uid
+      //   ..photoUrl = result.user?.photoUrl
+      //   ..phoneNumber = result.user?.phoneNumber
+      //   ..authProviderName = result.user?.authProviderName;
       message = result.message;
-      if (isSuccess) {
-        successToast(message);
-        await UserRepository.instance.setCurrentUser(user);
+      if (result.success && result.user != null) {
+        await UserRepository.instance.setCurrentUser(result.user!);
+        successToast(message ?? 'Login success');
+        isSuccess = true;
       } else {
-        isSuccess = false;
-        errorToast(message);
+        errorToast(message ?? 'Login failed');
       }
     } catch (e, st) {
-      isSuccess = false;
+      String? message;
+      if (e is BaseException) {
+        message = e.message;
+      }
       logg('Login failed', name: runtimeType, error: e, stackTrace: st);
-      errorToast(message ?? 'Login failed');
+      errorToast(message ?? 'Login faileds');
     } finally {}
-    return isSuccess;
+    return AuthResult(isSuccess, message.validate(), user);
   }
 
-  Future<bool> logOut() async {
-    return await UserRepository.instance.getCurrentUser().then((user) async {
-      if (user == null) {
-        warningToast('You are not logged in');
-        return false;
-      }
-      switch (user.authProviderName) {
-        case 'google':
-          await GoogleAuth().loggout();
-          break;
-        case 'email':
-          await EmailAuth(user.email!, user.token!).loggout();
-          break;
-        default:
-          break;
-      }
-      await UserRepository.instance.removeCurrentUser();
-      successToast('Logged out successfully');
-      return true;
-    });
+  Future<AuthResult> register(EmailAuth provider,
+      {String? email, String? password}) async {
+    AuthResult result = await provider.login();
+    // if (result.success) {
+    //   await FirebaseProfileService.createProfile(
+    //       result.user!.uid.validate(), result.user!.toMap());
+    // }
+    return result;
+  }
+
+  Future<AuthResult> logOut(AuthProviderInterface provider) async {
+    AuthResult result = await provider.loggout();
+    await UserRepository.instance.removeCurrentUser();
+    return result;
   }
 }

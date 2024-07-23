@@ -1,4 +1,4 @@
-import 'package:tracker/presentation/routes/name.dart';
+import '/presentation/routes/name.dart';
 
 class Paths {
   static const String _homeP = '$home/';

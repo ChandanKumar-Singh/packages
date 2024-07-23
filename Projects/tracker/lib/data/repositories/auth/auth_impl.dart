@@ -1,12 +1,12 @@
 import '../../models/index.dart';
 
 abstract class AuthRepository {
-  Future<AppUser?> signInWithEmailAndPassword(String email, String password);
-  Future<AppUser?> signUpWithEmailAndPassword(String email, String password);
+  Future<AuthUser?> signInWithEmailAndPassword(String email, String password);
+  Future<AuthUser?> signUpWithEmailAndPassword(String email, String password);
 
-  Future<AppUser?> signInWithGoogle();
+  Future<AuthUser?> signInWithGoogle();
 
-  Future<AppUser?> getCurrentUser();
+  Future<AuthUser?> getCurrentUser();
   Future<bool> isSignedIn();
   Future<void> sendPasswordResetEmail(String email);
 

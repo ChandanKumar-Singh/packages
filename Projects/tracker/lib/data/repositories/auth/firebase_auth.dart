@@ -1,5 +1,5 @@
-// import 'package:tracker/data/models/user/user_model.dart';
-// import 'package:tracker/data/repositories/auth/auth_impl.dart';
+// import '/data/models/user/user_model.dart';
+// import '/data/repositories/auth/auth_impl.dart';
 
 // import 'user_repository.dart';
 

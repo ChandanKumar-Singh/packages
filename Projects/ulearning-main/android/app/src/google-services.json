@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "684446974160",
+    "project_id": "ecom-kcks",
+    "storage_bucket": "ecom-kcks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684446974160:android:b15ebd815014b65ad31ed5",
+        "android_client_info": {
+          "package_name": "com.ecom.ulearning"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0SDClYHW4iNI1UgalPoYPHEiPUuqswps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,8 @@
+## 0.0.8+5
+
+* some new extention and widget added
+* exception updated
+
 ## 0.0.8+4
 
 * logger improved

@@ -17,6 +17,10 @@ export 'src/chatgpt/chat_gpt.dart';
 export 'src/chatgpt/chat_gpt_component.dart';
 export 'src/chatgpt/chat_gpt_strings.dart';
 export 'src/chatgpt/chat_gpt_models.dart';
+
+/// implementations
+export 'src/implementations/index.dart';
+
 export 'src/deprecated_widgets.dart';
 export 'src/extensions/bool_extensions.dart';
 export 'src/extensions/color_extensions.dart';
@@ -65,6 +69,8 @@ export 'src/widgets/animatedText/animated_text.dart';
 export 'src/widgets/animatedText/type_writer_animation.dart';
 export 'src/widgets/app_button.dart';
 export 'src/widgets/app_text_field.dart';
+export 'src/widgets/text_field.dart';
+export 'src/widgets/custom_web_tab.dart';
 export 'src/widgets/blur_widget.dart';
 export 'src/widgets/circular_progress_gradient.dart';
 export 'src/widgets/dot_indicator.dart';

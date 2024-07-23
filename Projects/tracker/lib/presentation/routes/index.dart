@@ -5,8 +5,8 @@ import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tracker/core/helper/index.dart';
-import 'package:tracker/data/repositories/auth/index.dart';
+import '/core/helper/index.dart';
+import '/data/repositories/auth/index.dart';
 
 import '../screens/index.dart';
 import 'index.dart';

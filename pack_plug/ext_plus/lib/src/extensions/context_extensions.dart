@@ -3,6 +3,13 @@ import 'package:ext_plus/ext_plus.dart';
 
 // Context Extensions
 extension ContextExtensions on BuildContext {
+  ThemeData get theme => Theme.of(this);
+  TextTheme get textTheme => theme.textTheme;
+  ColorScheme get colorScheme => theme.colorScheme;
+  MediaQueryData get mediaQuery => MediaQuery.of(this);
+  Size get screenSize => mediaQuery.size;
+  bool get isDark => theme.brightness == Brightness.dark;
+
   /// return screen size
   Size size() => MediaQuery.of(this).size;
 
@@ -23,12 +30,6 @@ extension ContextExtensions on BuildContext {
 
   /// Return the height of navigation bar
   double get navigationBarHeight => MediaQuery.of(this).padding.bottom;
-
-  /// Returns Theme.of(context)
-  ThemeData get theme => Theme.of(this);
-
-  /// Returns Theme.of(context).textTheme
-  TextTheme get textTheme => Theme.of(this).textTheme;
 
   /// Returns DefaultTextStyle.of(context)
   DefaultTextStyle get defaultTextStyle => DefaultTextStyle.of(this);

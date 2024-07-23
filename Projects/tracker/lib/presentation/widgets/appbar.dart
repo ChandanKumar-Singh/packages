@@ -1,29 +1,93 @@
+import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import 'theme_change_button.dart';
+import 'index.dart';
 
 PreferredSize transparentAppBar(
   BuildContext context, {
   String? title,
   double? elevation,
   double? height,
+  bool theme = false,
+  bool centerTile = false,
+  bool transparent = true,
+  Widget? leading,
 }) {
+  transparent = transparent && height == 0;
+  SystemUiOverlayStyle systemOverlayStyle = transparent
+      ? context.isDark
+          ? SystemUiOverlayStyle.light
+          : SystemUiOverlayStyle.dark
+      : SystemUiOverlayStyle.light;
   return PreferredSize(
-    preferredSize: Size.fromHeight(height ?? 50),
+    preferredSize: Size.fromHeight(height ?? 0),
     child: AppBar(
       toolbarHeight: height ?? 0,
-      title: title != null
-          ? Text(
-              title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(color: Colors.black),
-            )
-          : null,
-      backgroundColor: Colors.transparent,
+      centerTitle: centerTile,
+      title: title != null ? Text(title) : null,
+      leading: leading,
+      systemOverlayStyle: systemOverlayStyle,
+      backgroundColor: transparent
+          ? Colors.transparent
+          : Theme.of(context).appBarTheme.backgroundColor,
       elevation: 0,
-      actions: const [ThemeChangeButton()],
+      actions: [
+        if (theme) const ThemeSwitch(),
+      ],
+    ),
+  );
+}
+
+/// Global appbar
+PreferredSize buildAppbar(
+  BuildContext context, {
+  dynamic title,
+  double? elevation,
+  double? height,
+  bool theme = false,
+  bool centerTile = false,
+  bool transparent = false,
+  Widget? leading,
+  List<Widget>? actions,
+  Color? textColor,
+}) {
+  SystemUiOverlayStyle systemOverlayStyle = transparent
+      ? context.isDark
+          ? SystemUiOverlayStyle.light
+          : SystemUiOverlayStyle.dark
+      : SystemUiOverlayStyle.light;
+  textColor = textColor ??
+      (context.isDark || !transparent ? Colors.white : Colors.black);
+  return PreferredSize(
+    preferredSize: Size.fromHeight(height ?? 56),
+    child: AppBar(
+      iconTheme: context.theme.appBarTheme.iconTheme?.copyWith(
+        color: context.isDark || !transparent ? Colors.white : Colors.black,
+      ),
+      toolbarHeight: height ?? 56,
+      centerTitle: centerTile,
+      title: title != null
+          ? title is String
+              ? Text(
+                  title,
+                  style:
+                      context.textTheme.titleLarge?.copyWith(color: textColor),
+                )
+              : title is Widget
+                  ? title
+                  : null
+          : null,
+      leading: leading,
+      systemOverlayStyle: systemOverlayStyle,
+      backgroundColor: transparent
+          ? Colors.transparent
+          : Theme.of(context).appBarTheme.backgroundColor,
+      elevation: elevation ?? 0,
+      actions: [
+        if (actions != null) ...actions,
+        if (theme) const ThemeSwitch(),
+      ],
     ),
   );
 }

@@ -1,12 +1,14 @@
 import 'package:ext_plus/ext_plus.dart';
 import 'package:flutter/foundation.dart';
-import 'package:tracker/core/index.dart';
+import '/core/index.dart';
+import '/data/services/database/firebase_database.dart';
 
 import '../../models/index.dart';
 
 sealed class UserRepositoryImpl {
-  Future<AppUser?> getCurrentUser();
-  Future<void> setCurrentUser(AppUser user, {bool remote = false});
+  Future<AuthUser?> getCurrentUser();
+  Future<AuthUser?> refreshCurrentUser();
+  Future<void> setCurrentUser(AuthUser user, {bool remote = false});
   Future<void> removeCurrentUser();
   bool isUserLoggedIn();
   String getAuthToken();
@@ -15,8 +17,8 @@ sealed class UserRepositoryImpl {
 }
 
 class UserRepository extends ChangeNotifier implements UserRepositoryImpl {
-  AppUser? _currentUser;
-  AppUser? get currentUser => _currentUser;
+  AuthUser? _currentUser;
+  AuthUser? get currentUser => _currentUser;
   UserRepository._();
   static final UserRepository instance = UserRepository._();
 
@@ -26,10 +28,23 @@ class UserRepository extends ChangeNotifier implements UserRepositoryImpl {
   }
 
   @override
-  Future<AppUser?> getCurrentUser() async {
-    _currentUser = tryCatch<AppUser?>(
-        () => AppUser.fromJson(SpHelper.instance.getUser().validate()));
+  Future<AuthUser?> getCurrentUser() async {
+    _currentUser = tryCatch<AuthUser?>(
+        () => AuthUser.fromJson(SpHelper.instance.getUser().validate()));
     notifyListeners();
+    return _currentUser;
+  }
+
+  @override
+  Future<AuthUser?> refreshCurrentUser() async {
+    await tryCatchAsync(() async {
+      String id = getAuthToken();
+      if (id.isEmpty) return null;
+      logg('refreshCurrentUser $id', name: runtimeType);
+      AuthUser? user = await FirebaseDb().getUserData(id);
+      if (user != null) await setCurrentUser(user, remote: true);
+    });
+    await getCurrentUser();
     return _currentUser;
   }
 
@@ -47,6 +62,7 @@ class UserRepository extends ChangeNotifier implements UserRepositoryImpl {
   @override
   Future<void> removeCurrentUser() async {
     removeKey(StorageConstants.user);
+    removeKey(StorageConstants.authToken);
   }
 
   @override
@@ -55,10 +71,11 @@ class UserRepository extends ChangeNotifier implements UserRepositoryImpl {
   }
 
   @override
-  Future<void> setCurrentUser(AppUser user, {bool remote = false}) async {
+  Future<void> setCurrentUser(AuthUser user, {bool remote = false}) async {
+    await FirebaseDb().setUserData(user.uid.validate(), user.toJson());
     await Future.wait([
       SpHelper.instance.saveUser(user.toJson()),
-      setAuthToken(user.token.validate()),
+      setAuthToken(user.uid.validate()),
       setValue(StorageConstants.isLogin, true),
     ]);
     _currentUser = user;
