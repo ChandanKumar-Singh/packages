@@ -105,8 +105,8 @@ GoRouter goRouter = GoRouter(
 
 FutureOr<String?> _redirect(BuildContext context, GoRouterState state) {
   logg('Redirecting to ${state.matchedLocation}', name: 'GoRouter');
+  bool isAuth = UserRepository.instance.isUserLoggedIn();
   if (state.matchedLocation.startsWith(Paths.home)) {
-    bool isAuth = UserRepository.instance.isUserLoggedIn();
     logg('User is logged in: $isAuth  ${state.matchedLocation}',
         name: 'GoRouter');
     if (!isAuth) {

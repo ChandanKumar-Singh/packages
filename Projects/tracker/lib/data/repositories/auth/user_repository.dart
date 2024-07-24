@@ -50,8 +50,10 @@ class UserRepository extends ChangeNotifier implements UserRepositoryImpl {
 
   @override
   bool isUserLoggedIn() {
-    return getBoolAsync(StorageConstants.isLogin, defaultValue: false) &&
-        SpHelper.instance.getUser().validate().isNotEmpty;
+    bool res = getBoolAsync(StorageConstants.isLogin, defaultValue: false) &&
+        getAuthToken().isNotEmpty;
+    if (res && _currentUser == null) getCurrentUser();
+    return res;
   }
 
   @override
@@ -72,7 +74,9 @@ class UserRepository extends ChangeNotifier implements UserRepositoryImpl {
 
   @override
   Future<void> setCurrentUser(AuthUser user, {bool remote = false}) async {
-    await FirebaseDb().setUserData(user.uid.validate(), user.toJson());
+    if (!remote) {
+      await FirebaseDb().setUserData(user.uid.validate(), user.toJson());
+    }
     await Future.wait([
       SpHelper.instance.saveUser(user.toJson()),
       setAuthToken(user.uid.validate()),

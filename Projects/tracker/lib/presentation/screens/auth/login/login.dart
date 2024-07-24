@@ -26,13 +26,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login(AuthProviderInterface method) async {
     if (!termsCondition.value) {
-      infoToast('Please agree to the terms and conditions');
+      warningToast('Please agree to the terms and conditions');
       return;
     }
     if (method is EmailAuth) {
-      if (!formKey.currentState!.validate()) {
-        return;
-      }
+      if (!(formKey.currentState?.validate() ?? true)) return;
       if (rememberMe.value) TextInput.finishAutofillContext();
       formKey.currentState!.save();
     }

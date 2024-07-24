@@ -143,6 +143,7 @@ String? parseCreatedAt(dynamic data) {
     return data.toDate().toIso8601String();
   } else if (data is DateTime) {
     return data.toIso8601String();
+  } else {
+    return DateTime.tryParse(data)?.toIso8601String();
   }
-  return null;
 }

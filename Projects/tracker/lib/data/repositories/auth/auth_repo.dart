@@ -13,8 +13,8 @@ class AuthRepo {
     AuthUser? user;
     String? message;
     try {
+      logg('${provider.providerName} Login started', name: runtimeType);
       AuthResult result = await provider.login();
-      logg('$provider Login started', name: runtimeType);
       // final result = provider is SocialAuthProvider
       //     ? await loginWithSocialAuth(provider)
       //     : await loginWithCredentials(email!, password!);
@@ -26,6 +26,7 @@ class AuthRepo {
       //   ..photoUrl = result.user?.photoUrl
       //   ..phoneNumber = result.user?.phoneNumber
       //   ..authProviderName = result.user?.authProviderName;
+      logg('${result.toString()} Login completed', name: runtimeType);
       message = result.message;
       if (result.success && result.user != null) {
         await UserRepository.instance.setCurrentUser(result.user!);
