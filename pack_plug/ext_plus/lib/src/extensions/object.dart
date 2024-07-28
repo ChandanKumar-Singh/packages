@@ -1,8 +1,6 @@
-// extension ObjectExt on Object? {
-//   Object validate() {
-//     if (this == null) {
-//       throw Exception('Object is null');
-//     }
-//     return this!;
-//   }
-// }
+import '../utils/log.dart' as lg;
+
+extension ObjectExt on Object? {
+  bool isNull() => this == null;
+  bool isNotNull() => this != null;
+}

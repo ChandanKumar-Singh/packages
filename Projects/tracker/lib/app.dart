@@ -8,6 +8,11 @@ class _TrackerApp extends StatefulWidget {
 }
 
 class __TrackerAppState extends State<_TrackerApp> {
+  @override
+  void initState() {
+    super.initState();
+    Bloc.observer = MyBlocObserver();
+  }
   /// The route configuration.
   final GoRouter _router = goRouter;
   @override

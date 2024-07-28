@@ -1,3 +1,7 @@
+## 0.0.8+6
+
+* date utils added
+
 ## 0.0.8+5
 
 * some new extention and widget added

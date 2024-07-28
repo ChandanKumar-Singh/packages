@@ -53,7 +53,9 @@
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver> -->
-
+    <!-- google map -->
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAPXCfrNeJUucn3YZv9w7-jtxcHNBQXFaE"/>
     </application>
     
     <queries>

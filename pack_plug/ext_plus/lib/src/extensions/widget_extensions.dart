@@ -502,4 +502,25 @@ extension WidgetExtension on Widget? {
       child: this,
     );
   }
+
+  /// hero animation
+  Widget hero({
+    Key? key,
+    required Object tag,
+    Tween<Rect?> Function(Rect?, Rect?)? createRectTween,
+    Widget Function(BuildContext, Animation<double>, HeroFlightDirection,
+            BuildContext, BuildContext)?
+        flightShuttleBuilder,
+    Widget Function(BuildContext, Size, Widget)? placeholderBuilder,
+    bool transitionOnUserGestures = false,
+  }) =>
+      Hero(
+        key: key,
+        tag: tag,
+        createRectTween: createRectTween,
+        flightShuttleBuilder: flightShuttleBuilder,
+        placeholderBuilder: placeholderBuilder,
+        transitionOnUserGestures: transitionOnUserGestures,
+        child: this!,
+      );
 }

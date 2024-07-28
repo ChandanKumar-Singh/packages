@@ -191,4 +191,10 @@ extension IntExtensions on int? {
     }
     return false;
   }
+
+  /// date utils
+  DateTime? toDate() {
+    if (this == null && this == 0) return null;
+    return DateTime.fromMillisecondsSinceEpoch(this!);
+  }
 }

@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as service;
 import 'package:ext_plus/ext_plus.dart';
 
+import '../utils/date.dart';
+
 RegExp alphaRegExp = RegExp(r'^[a-zA-Z]+$');
 
 // String Extensions
 extension StringExtension on String? {
-  
   /// Check email validation
   bool validateEmail() => hasMatch(this, Patterns.email);
 
@@ -345,4 +346,61 @@ extension StringExtension on String? {
 
   /// Returns true if the validate() method returns 'true', otherwise returns false.
   bool toBool() => validate() == 'true';
+}
+
+extension DateStringExtensions on String? {
+  /// Parses the string into a DateTime object with a given format
+  DateTime? toDate() {
+    if (this == null) return null;
+    return DateTime.tryParse(this!);
+  }
+
+  /// Formats the date string as 'Today', 'Yesterday', or 'dd/MM/yyyy'
+  String formatDate({String? format}) { 
+    final dateTime = toDate();
+    return MyDateUtils.formatDate(dateTime, format: format);
+  }
+
+  /// Formats the date string as 'Today', 'Yesterday', or 'dd/MM/yyyy'
+  String formatAsToday([String? format, bool getToday = false]) {
+    final dateTime = toDate();
+    return MyDateUtils.formatDateAsToday(dateTime,
+        format: format, getToday: getToday);
+  }
+
+  /// Gets the time difference between now and the date represented by the string
+  String getTimeDifference() {
+    final dateTime = toDate();
+    return MyDateUtils.getTimeDifference(dateTime);
+  }
+
+  /// Checks if the date represented by the string is the same day as another date
+  bool isSameDay(String? otherDateStr) {
+    final date1 = toDate();
+    final date2 = otherDateStr?.toDate();
+    return MyDateUtils.isSameDay(date1, date2);
+  }
+
+  /// Checks if the date represented by the string is within a specified range
+  bool isDateInRange(String startDateStr, String endDateStr) {
+    final date = toDate();
+    if (date == null) return false;
+    final startDate = startDateStr.toDate();
+    final endDate = endDateStr.toDate();
+    return MyDateUtils.isDateInRange(date, startDate!, endDate!);
+  }
+
+  /// Converts the date string to a different time zone
+  DateTime? convertToTimeZone(String timeZone) {
+    final dateTime = toDate();
+    return dateTime != null
+        ? MyDateUtils.convertToTimeZone(dateTime, timeZone)
+        : null;
+  }
+
+  /// Calculates the age from the date represented by the string
+  int? calculateAge() {
+    final dateTime = toDate();
+    return dateTime != null ? MyDateUtils.calculateAge(dateTime) : null;
+  }
 }

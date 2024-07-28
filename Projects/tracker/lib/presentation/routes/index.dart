@@ -89,7 +89,9 @@ GoRouter goRouter = GoRouter(
         _route2(
           Routes.location,
           Routes.location,
-          (c, s) => const LocationPage(),
+          (c, s) => LocationPage(
+              initialIndex:
+                  int.tryParse(s.uri.queryParameters['screen'] ?? '')),
         ),
       ],
     ),

@@ -23,7 +23,7 @@ void logg(
   DateTime? time,
   int? sequenceNumber,
   int level = 0,
-  dynamic name = '',
+  dynamic name,
   Zone? zone,
   Object? error,
   StackTrace? stackTrace,
@@ -32,7 +32,7 @@ void logg(
       time: time,
       sequenceNumber: sequenceNumber,
       level: level,
-      name: name.toString(),
+      name: name == null ? '' : name.toString(),
       zone: zone,
       error: error,
       stackTrace: stackTrace);
